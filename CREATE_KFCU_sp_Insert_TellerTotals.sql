@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-Create PROCEDURE [dbo].[KFCU_sp_Insert_TellerTotals_TEST]
+Create PROCEDURE [dbo].[KFCU_sp_Insert_TellerTotals]
     @ProcessDate INT,
     @Branch INT,
     @User INT,
@@ -14,7 +14,7 @@ Create PROCEDURE [dbo].[KFCU_sp_Insert_TellerTotals_TEST]
 
 AS
 BEGIN
-    MERGE [dbo].[KFCU_TellerTotals_TEST] AS target
+    MERGE [dbo].[KFCU_TellerTotals] AS target
     USING (SELECT @ProcessDate AS ProcessDate, @Branch AS Branch, @User AS [User], @Txcount AS Txcount) AS source
     ON (target.ProcessDate = source.ProcessDate AND target.Branch = source.Branch AND target.[User] = source.[User])
     WHEN MATCHED THEN
